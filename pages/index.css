@@ -114,6 +114,7 @@
 
 .profile__edit-button:hover {
   opacity: 0.6;
+  cursor: pointer;
 }
 
 @media (max-width: 320px) {
@@ -128,7 +129,7 @@
 
 .profile__add-button {
   background-color: unset;
-  background-image: url(../image/Add\ Button.png);
+  background-image: url(../image/Add_Button.png);
   background-position: 50% center;
   background-repeat: no-repeat;
   border: 2px solid #fff;
@@ -233,14 +234,113 @@
 }
 
 .popup {
+  background-color: rgba(0, 0, 0, .5);
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  inset: 0px;
-  display: flex;
-  justify-content: center;
-  opacity: 0;
   position: fixed;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  display: flex;
+  transition: opacity 0.4s, visibility 0.4s ease;
+  opacity: 0;
   visibility: hidden;
+}
+
+.popup_open {
+  display: flex;
+	visibility: visible;
+  opacity: 1;
+  transition: opacity 0.4s, visibility 0.4s ease;
+}
+
+.popup__close {
+  background-image: url(../image/close-icon.svg);
+  border: none;
+  width: 40px;
+  height: 40px;
+  background-color: unset;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  outline: none;
+}
+
+.popup__container {
+  background-color: #fff;
+  border-radius: 10px;
+  box-sizing: border-box;
+  max-width: 430px;
+  position: relative;
+}
+
+.popup__name {
+  color: black;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  padding: 34px 64px 54px 36px;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .popup__name {
+    font-size: 18px;
+    line-height: 22px;
+    padding: 25px 22px 50px;
+  }
+}
+
+.popup__input {
+  max-width: 358px;
+  font-size: 14px;
+  line-height: 17px;
+  border: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 0 36px 30px;
+  outline: none;
+	padding: 0;
+  padding-bottom: 13px;
+	width: 100%;
+}
+
+@media (max-width: 768px) {
+  .popup__input {
+    max-width: 238px;
+    margin: 0 22px 30px;
+  }
+}
+
+.popup__button {
+  margin: 13px 36px 36px;
+  min-width: 358px;
+  min-height: 50px;
+  background-color: black;
+  color: white;
+  font-size: 18px;
+  line-height: 22px;
+  border: 0;
+  border-radius: 2px;
+  outline: none;
+}
+
+.popup__button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .popup__button {
+    min-width: 238px;
+    font-size: 14px;
+    line-height: 17px;
+    margin: 15px 22px 25px;
+    height: 46px;
+  }
 }
 
 @media (max-width: 900px) {

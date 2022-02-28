@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="descrpition" content="Интерактивный сайт загрузки профиля с аватарками.">
     <link rel="stylesheet" href="vendor/normalize.css">
-    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="pages/index.css">
     <title>Mesto</title>
 </head>
 <body class="page">
@@ -18,7 +18,7 @@
 
         <section class="profile">
             <div class="profile__avatar">
-                <img src="./image/Avatar.png" alt="Кусто">
+                <img src="./image/Avatar.png" alt="Аватар">
             </div>
             <div class="profile__info">
                 <div class="profile__name">
@@ -102,10 +102,11 @@
                 <form class="popup__form" name="popup-form" novalidate>
                 <input type="text" class="popup__input" name="Имя" id="input-popup-title" value="" placeholder="Имя" minlength="2" maxlength="40" required>
 				<input type="text" class="popup__input" name="О себе" id="input-popup-subtitle" value="" placeholder="Вид деятельности" minlength="2" maxlength="200" required>
-				<button type="submit" class="popup__button">Сохранить</button>
+                <button type="submit" class="popup__button">Сохранить</button>
                 </form>
-                <button type="button" class="popup__closed"></button>
+                <button type="button" class="popup__close"></button>
             </div>
         </div>
+        <script src="./pages/index.js"></script>
 </body>
 </html>
