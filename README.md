@@ -5,6 +5,6 @@
 
 <p>В проекте реализованы функции редактирования профиля.</p>
 
-<p>Ссылка на проект: <a href="https://makacuh.github.io/mesto/index.html">https://makacuh.github.io/mesto/index.html</a>
+<p>Ссылка на проект: <a href="https://makacuh.github.io/mesto/index.html">https://makacuh.github.io/mesto</a>
 
 
