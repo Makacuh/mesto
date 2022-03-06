@@ -1,16 +1,17 @@
 .element__like {
-    background-image: url(../../../image/white_heart.jpg);
-    background-position: 50% center;
-    background-repeat: no-repeat;
-    border: none;
-    cursor: pointer;
-    height: 19px;
-    padding: 0;
-    width: 22px;
-    opacity: 1;
-    transition: opacity .1s ease-in-out;
-  }
+  background-image: url(../../../image/white_heart.svg);
+  background-position: 50% center;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  height: 19px;
+  padding: 0;
+  width: 22px;
+  opacity: 1;
+  background-color: unset;
+  transition: opacity .1s ease-in-out;
+}
 
-  .element__like:hover {
-    opacity: 0.6;
-  }
+.element__like:hover {
+  opacity: 0.6;
+}

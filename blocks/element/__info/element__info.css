@@ -1,9 +1,9 @@
 .element__info {
-    display: flex;
-    background-color: #fff;
-    align-items: center;
-    justify-content: space-between;
-    padding: 25px 15px 31px 21px;
-    width: 282px;
-    box-sizing: border-box;
-  }
+  display: flex;
+  background-color: #fff;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25px 15px 31px 21px;
+  width: 282px;
+  box-sizing: border-box;
+}
