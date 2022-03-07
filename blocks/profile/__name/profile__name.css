@@ -6,6 +6,7 @@
 
 @media (max-width: 320px) {
   .profile__name {
-    margin: 0;
+    align-items: center;
+    margin-bottom: 14px;
   }
 }

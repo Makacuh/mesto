@@ -5,3 +5,10 @@
   max-width: 430px;
   position: relative;
 }
+
+@media (max-width: 768px) {
+  .popup__container {
+    max-width: 282px;
+    max-height: 322px;
+  }
+}
