@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="descrpition" content="Интерактивный сайт загрузки профиля с аватарками.">
-    <link rel="stylesheet" href="vendor/normalize.css">
     <link rel="stylesheet" href="pages/index.css">
     <title>Место</title>
 </head>
@@ -19,18 +18,16 @@
     <main>
 
         <section class="profile">
-            <div class="profile__avatar">
-                <img src="./image/Avatar.png" alt="Аватар">
-            </div>
+            <img class="profile__avatar" src="./image/Avatar.png" alt="Аватар">
             <div class="profile__info">
                 <div class="profile__name">
                     <h1 class="profile__title">Жак-Ив Кусто</h1>
-                    <button type="button" class="profile__edit-button"></button>
+                    <button type="button" class="profile__edit-button" aria-label="Edit"></button>
                 </div>
 
                 <p class="profile__subtitle">Исследователь океана</p>
             </div>
-            <button type="button" class="profile__add-button"></button>
+            <button type="button" class="profile__add-button" aria-label="Add"></button>
 
         </section>
 
@@ -40,54 +37,42 @@
                     <img class="element__image" src="./image/Damodara.jpg" alt="Дамодара">
                     <div class="element__info">
                         <h2 class="element__title">Дамодара</h2>
-                        <div class="element__like">
-                            <button type="button" class="element__like element__like_active"></button>
-                        </div>
+                        <button type="button" class="element__like element__like_active" aria-label="Like"></button>
                     </div>
                 </li>
                 <li class="element">
                     <img class="element__image" src="./image/Ganesha.jpg" alt="Ганеша">
                     <div class="element__info">
                         <h2 class="element__title">Ганеша</h2>
-                        <div class="element__like">
-                            <button type="button" class="element__like element__like_active"></button>
-                        </div>
+                        <button type="button" class="element__like element__like_active" aria-label="Like"></button>
                     </div>
                 </li>
                 <li class="element">
                     <img class="element__image" src="./image/Face_Shiva.jpg" alt="Лицо Шивы">
                     <div class="element__info">
                         <h2 class="element__title">Бюст Шивы</h2>
-                        <div class="element__like">
-                            <button type="button" class="element__like element__like_active"></button>
-                        </div>
+                        <button type="button" class="element__like element__like_active" aria-label="Like"></button>
                     </div>
                 </li>
                 <li class="element">
                     <img class="element__image" src="./image/Pavlin.jpg" alt="Перо павлина">
                     <div class="element__info">
                         <h2 class="element__title">Перо Павлина</h2>
-                        <div class="element__like">
-                            <button type="button" class="element__like element__like_active"></button>
-                        </div>
+                        <button type="button" class="element__like element__like_active" aria-label="Like"></button>
                     </div>
                 </li>
                 <li class="element">
                     <img class="element__image" src="./image/Shiva.jpg" alt="Шива">
                     <div class="element__info">
                         <h2 class="element__title">Шива</h2>
-                        <div class="element__like">
-                            <button type="button" class="element__like element__like_active"></button>
-                        </div>
+                        <button type="button" class="element__like element__like_active" aria-label="Like"></button>
                     </div>
                 </li>
                 <li class="element">
                     <img class="element__image" src="./image/vivek-sharma-CfkSS7rYXnA-unsplash.jpg" alt="Рама">
                     <div class="element__info">
                         <h2 class="element__title">Рама</h2>
-                        <div class="element__like">
-                            <button type="button" class="element__like element__like_active"></button>
-                        </div>
+                        <button type="button" class="element__like element__like_active" aria-label="Like"></button>
                     </div>
                 </li>
             </ul>
@@ -95,20 +80,20 @@
     </main>
 
     <footer class="footer">
-        <p class="footer__copyright">© 2022. Алексей Винник</p>
+        <p class="footer__copyright">&copy; 2022. Алексей Винник</p>
     </footer>
 
-    <div class="popup profile-popup">
+    <div class="popup">
         <div class="popup__container">
             <h2 class="popup__name">Редактировать профиль</h2>
             <form class="popup__form" name="popup-form" novalidate>
-                <input type="text" class="popup__input" name="Имя" id="input-popup-title" value="" placeholder="Имя"
+                <input type="text" class="popup__input" name="Имя" id="input-popup-title" placeholder="Имя"
                     minlength="2" maxlength="40" autocomplete="off" required>
-                <input type="text" class="popup__input" name="О себе" id="input-popup-subtitle" value=""
+                <input type="text" class="popup__input" name="О себе" id="input-popup-subtitle"
                     placeholder="Вид деятельности" minlength="2" maxlength="200" autocomplete="off" required>
-                <button type="submit" class="popup__button">Сохранить</button>
+                <button type="submit" class="popup__button" aria-label="Save">Сохранить</button>
             </form>
-            <button type="button" class="popup__close"></button>
+            <button type="button" class="popup__close" aria-label="Close"></button>
         </div>
     </div>
     <script src="./script/index.js"></script>

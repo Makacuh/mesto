@@ -17,7 +17,6 @@
 @media (max-width: 767px) {
   .elements {
     grid-template-columns: 1fr;
-    row-gap: 20px;
     margin-bottom: 48px;
   }
 }
