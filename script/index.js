@@ -5,18 +5,17 @@ let authorName = document.querySelector(".profile__title");
 let authorAbout = document.querySelector(".profile__subtitle");
 let titleInput = popup.querySelector("#input-popup-title");
 let subtitleInput = popup.querySelector("#input-popup-subtitle");
-let editProfile = document.querySelector(".profile-popup");
 let profileForm = popup.querySelector(".popup__form");
 
 
 function popupOpen() {
-    popup.classList.add('popup__open');
-    titleInput.value = (authorName.textContent);
-    subtitleInput.value = (authorAbout.textContent);
+    titleInput.value = authorName.textContent;
+    subtitleInput.value = authorAbout.textContent;
+    popup.classList.add('popup_open');
 };
 
 function popupClose() {
-    popup.classList.remove('popup__open');
+    popup.classList.remove('popup_open');
 };
 
 function handleProfileEditSubmit(event) {
