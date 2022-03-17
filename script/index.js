@@ -34,6 +34,25 @@ editButton.addEventListener("click", popupOpen);
 closePopup.addEventListener("click", popupClose);
 //--------------------------------------------------------------------------------//
 
+
+let addButton = document.querySelector(".profile__add-button");
+let placeTitleInput = popup.querySelector("#element-name");
+let placeSubtitleInput = popup.querySelector("#element-link");
+let placeName = document.querySelector(".element__title");
+let addPopup =  document.querySelector(".popup-place");
+
+function popupAddOpen() {
+    
+    addPopup.classList.add('popup_open');
+};
+
+
+addButton.addEventListener("click", popupAddOpen);
+
+function popupAddClose() {
+    addPopup.classList.remove('popup_open');
+};
+
 const initialCards = [
     {
       name: "Архыз",
@@ -93,3 +112,5 @@ const initialCards = [
   }
   
   render();
+
+  
