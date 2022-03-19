@@ -36,22 +36,16 @@ closePopup.addEventListener("click", popupClose);
 
 
 let addButton = document.querySelector(".profile__add-button");
-let placeTitleInput = popup.querySelector("#element-name");
-let placeSubtitleInput = popup.querySelector("#element-link");
 let placeName = document.querySelector(".element__title");
 let addPopup =  document.querySelector(".popup-place");
+let placeTitleInput = addPopup.querySelector("#element-name");
+let placeSubtitleInput = addPopup.querySelector("#element-link");
+let closeAddPopup = addPopup.querySelector(".popup__close");
+let AddForm = addPopup.querySelector(".popup__form-add-element");    
 
-function popupAddOpen() {
-    
-    addPopup.classList.add('popup_open');
-};
 
 
-addButton.addEventListener("click", popupAddOpen);
 
-function popupAddClose() {
-    addPopup.classList.remove('popup_open');
-};
 
 const initialCards = [
     {
@@ -98,10 +92,10 @@ const initialCards = [
   });
   
   function render() {
-    placeInfo.forEach(renderCard);
+    placeInfo.forEach(renderElement);
   }
   
-  function renderCard({ name, link }) {
+  function renderElement({ name, link }) {
     const placeElement = placeTemplate
       .querySelector(".element")
       .cloneNode(true);
@@ -113,4 +107,34 @@ const initialCards = [
   
   render();
 
+  function popupAddOpen() {
+    
+    addPopup.classList.add('popup_open');
+};
+
+function popupAddClose() {
+  addPopup.classList.remove('popup_open');
+};
+
+function handleAddSubmit(event) {
+  event.preventDefault();
+
+  const placeElement = placeTemplate
+      .querySelector(".element")
+      .cloneNode(true);
+    placeElement.querySelector(".element__title").textContent = placeTitleInput.value;
+    placeElement.querySelector(".element__image").src = placeSubtitleInput.value;
   
+    placesBox.prepend(placeElement);
+  
+  
+
+  popupAddClose();
+  AddForm.reset();
+
+}
+
+AddForm.addEventListener('submit', handleAddSubmit);
+addButton.addEventListener("click", popupAddOpen);
+closeAddPopup.addEventListener("click", popupAddClose);
+
