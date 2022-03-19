@@ -83,7 +83,7 @@ const initialCards = [
   
   const placeTemplate = document.querySelector(".element-template").content;
   const placesBox = document.querySelector(".elements");
-  
+  //Автоматическое добавление элементов массива//
   const placeInfo = initialCards.map(function (item) {
     return {
       name: item.name,
@@ -106,16 +106,16 @@ const initialCards = [
   }
   
   render();
-
+//Открытие попапа//
   function popupAddOpen() {
     
     addPopup.classList.add('popup_open');
 };
-
+//Закрытие попапа//
 function popupAddClose() {
   addPopup.classList.remove('popup_open');
 };
-
+//Добавление места//
 function handleAddSubmit(event) {
   event.preventDefault();
 
@@ -134,7 +134,22 @@ function handleAddSubmit(event) {
 
 }
 
+
+
 AddForm.addEventListener('submit', handleAddSubmit);
 addButton.addEventListener("click", popupAddOpen);
 closeAddPopup.addEventListener("click", popupAddClose);
+//Лайки//
+
+function addLike(event) {
+  event.preventDefault();
+  event.target.classList.toggle("element__like_active");
+  
+  
+  
+};
+
+
+placesBox.addEventListener("click", addLike);
+
 
