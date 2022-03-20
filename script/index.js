@@ -141,15 +141,15 @@ addButton.addEventListener("click", popupAddOpen);
 closeAddPopup.addEventListener("click", popupAddClose);
 //Лайки//
 
-function addLike(event) {
-  event.preventDefault();
+
+
+const likes = document.querySelectorAll('.element__like');
+
+function isLike (event) {
   event.target.classList.toggle("element__like_active");
-  
-  
-  
 };
 
-
-placesBox.addEventListener("click", addLike);
-
+likes.forEach((like) => {
+  like.addEventListener('click', isLike);
+});
 
