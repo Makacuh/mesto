@@ -152,4 +152,20 @@ function isLike (event) {
 likes.forEach((like) => {
   like.addEventListener('click', isLike);
 });
+//Удаление элемента
 
+const deleteElement = document.querySelectorAll(".element__btn-trash");
+
+
+function trash (event) {
+  
+   const element = event.target.closest(".element");
+  event.preventDefault();
+  element.remove();
+  
+  
+};
+
+deleteElement.forEach((item) => {
+  item.addEventListener('click', trash);
+});
