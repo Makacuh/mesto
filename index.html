@@ -33,7 +33,7 @@
 
         <section>
             <ul class="elements">
-                
+
             </ul>
         </section>
     </main>
@@ -56,37 +56,45 @@
         </div>
     </div>
 
-        <div class="popup popup-place">
-            <div class="popup__container">
-                <button type="button" class="popup__close"></button>
-                <h3 class="popup__title">Новое место</h3>
-                <form class="popup__form-add-element" name="place" novalidate>
-                    <input type="text" id="element-name" name="name" class="popup__input popup__input_name" placeholder="Название" minlength="2" maxlength="30" required>
-                    <input type="URL" id="element-link" name="link" class="popup__input popup__input_link" placeholder="Ссылка на картинку" required>
-                    <button type="submit" class="popup__button popup__button_disabled"  aria-label="Добавить место">Создать</button>
-                </form>
-            </div>
+    <div class="popup popup-place">
+        <div class="popup__container">
+            <button type="button" class="popup__close"></button>
+            <h3 class="popup__title">Новое место</h3>
+            <form class="popup__form-add-element" name="place" novalidate>
+                <input type="text" id="element-name" name="name" class="popup__input popup__input_name"
+                    placeholder="Название" minlength="2" maxlength="30" required>
+                <input type="URL" id="element-link" name="link" class="popup__input popup__input_link"
+                    placeholder="Ссылка на картинку" required>
+                <button type="submit" class="popup__button popup__button_disabled"
+                    aria-label="Добавить место">Создать</button>
+            </form>
         </div>
-
     </div>
-<template class="element-template">
-    <li class="element">
-        
-        <img class="element__image" src="" alt="">
-        
-        <div class="element__info">
-            <h2 class="element__title"></h2>
-            <button type="button" class="element__like" aria-label="Плюс"></button>
-            
-            <button class="element__btn-trash" type="button" title="Удалить"></button>
-        
+
+    <div class="popup popup_window">
+        <div class="popup__preview">
+            <figure class="popup__figure">
+                <img class="popup__image" src="#" alt="Фото места">
+                <figcaption class="popup__figcaption"></figcaption>
+            </figure>
+            <button type="button" class="popup__close"></button>
         </div>
-        
-    </li>
-</template>
-    </body>
-    
-    <script src="./script/index.js"></script>
+    </div>
+    </div>
+
+    <template class="element-template">
+        <li class="element">
+            <img class="element__image" src="" alt="">
+            <div class="element__info">
+                <h2 class="element__title"></h2>
+                <button type="button" class="element__like" aria-label="Плюс"></button>
+                <button class="element__btn-trash" type="button" title="Удалить"></button>
+            </div>
+        </li>
+    </template>
+</body>
+
+<script src="./script/index.js"></script>
 </body>
 
 </html>

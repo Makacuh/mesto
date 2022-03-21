@@ -159,7 +159,7 @@ const deleteElement = document.querySelectorAll(".element__btn-trash");
 
 function trash (event) {
   
-   const element = event.target.closest(".element");
+   let element = event.target.closest(".element");
   event.preventDefault();
   element.remove();
   
@@ -169,3 +169,31 @@ function trash (event) {
 deleteElement.forEach((item) => {
   item.addEventListener('click', trash);
 });
+//PREVIEW
+let elementImage = document.querySelectorAll(".element__image");
+let popupWindow = document.querySelector(".popup_window");
+let elementTitle = document.querySelectorAll(".element__title");
+let popupWindowClose = popupWindow.querySelector(".popup__close");
+
+function popupPreviewOpen (event) {
+  let popupImage = popupWindow.querySelector(".popup__image");
+  let elementImage = event.target.closest(".element__image");
+  let element = event.target.closest(".element");
+  let placeName = element.querySelector(".element__title");
+  let popupFigcaption = popupWindow.querySelector(".popup__figcaption");
+  
+  popupImage.src = elementImage.src;
+  popupImage.alt = elementImage.alt;
+ popupFigcaption.textContent = placeName.textContent;
+  popupWindow.classList.add("popup_open");
+}
+
+elementImage.forEach((item) => {
+  item.addEventListener('click', popupPreviewOpen);
+});
+
+function popupPreviewClose() {
+  popupWindow.classList.remove('popup_open');
+};
+
+popupWindowClose.addEventListener('click', popupPreviewClose);
