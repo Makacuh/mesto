@@ -1,13 +1,13 @@
 .element__like {
   background-image: url(../../../image/white_heart.svg);
-  background-position: 50% center;
+  background-position: 50%;
   background-repeat: no-repeat;
   border: none;
   cursor: pointer;
   height: 19px;
   padding: 0;
   width: 22px;
-  opacity: 1;
+  outline: none;
   background-color: unset;
   transition: opacity .1s ease-in-out;
 }
