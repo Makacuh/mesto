@@ -1,37 +1,34 @@
 const popup = document.querySelector(".popup");
 const editButton = document.querySelector(".profile__edit-button");
-const popupClose = popup.querySelector(".popup__close");
+const popupClose = document.querySelectorAll(".popup__close");
 const authorName = document.querySelector(".profile__title");
 const authorAbout = document.querySelector(".profile__subtitle");
 const titleInput = popup.querySelector("#input-popup-title");
 const subtitleInput = popup.querySelector("#input-popup-subtitle");
 const profileForm = popup.querySelector(".popup__form");
 
+function closePopup(event) {
+  const close = event.target.closest(".popup"); 
+  close.classList.remove('popup_open');
+ };
 
-function openPopup() {
+profileForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+  authorName.textContent = titleInput.value;
+  authorAbout.textContent = subtitleInput.value;
+  closePopup();
+  profileForm.reset();
+});
+
+editButton.addEventListener("click", function () {
   titleInput.value = authorName.textContent;
   subtitleInput.value = authorAbout.textContent;
   popup.classList.add('popup_open');
-};
+});
 
-function closePopup() {
-  popup.classList.remove('popup_open');
-};
-
-function handleProfileEditSubmit(event) {
-  event.preventDefault();
-
-  authorName.textContent = titleInput.value;
-  authorAbout.textContent = subtitleInput.value;
-
-  closePopup();
-  profileForm.reset();
-
-}
-
-profileForm.addEventListener('submit', handleProfileEditSubmit);
-editButton.addEventListener("click", openPopup);
-popupClose.addEventListener("click", closePopup);
+popupClose.forEach((popupItem) => {
+  popupItem.addEventListener('click', closePopup);
+});
 
 //Автоматическое добавление карточек
 
@@ -40,7 +37,6 @@ const placeName = document.querySelector(".element__title");
 const addPopup = document.querySelector(".popup-place");
 const placeTitleInput = addPopup.querySelector("#element-name");
 const placeSubtitleInput = addPopup.querySelector("#element-link");
-const closeAddPopup = addPopup.querySelector(".popup__close");
 const addForm = addPopup.querySelector(".popup__form-add-element");
 
 const initialCards = [
@@ -90,41 +86,27 @@ const placesBox = document.querySelector(".elements");
 return placeElement;
   }
 
-
 function renderElement(initialCards,placesBox) {
   const card = createElement(initialCards);
 }
 initialCards.forEach(card => {createElement(card);});
 
-
-//Открытие попапа
-
-function popupAddOpen() {
-  addPopup.classList.add('popup_open');
-};
-
-//Закрытие попапа
-
-function popupAddClose() {
-  addPopup.classList.remove('popup_open');
-};
-
 //Добавление места
 
-function handleAddSubmit(event) {
+addForm.addEventListener('submit', function handleAddSubmit(event) {
   event.preventDefault();
   
 createElement({
   name: placeTitleInput.value,
   link: placeSubtitleInput.value
 });
-  popupAddClose();
+closePopup();
   addForm.reset();
-}
+});
 
-addForm.addEventListener('submit', handleAddSubmit);
-addButton.addEventListener("click", popupAddOpen);
-closeAddPopup.addEventListener("click", popupAddClose);
+addButton.addEventListener("click", function () {
+  addPopup.classList.add('popup_open');
+});
 
 //Лайки//
 
@@ -159,7 +141,6 @@ deleteElement.forEach((item) => {
 const elementImage = document.querySelectorAll(".element__image");
 const popupWindow = document.querySelector(".popup_window");
 const elementTitle = document.querySelectorAll(".element__title");
-const popupWindowClose = popupWindow.querySelector(".popup__close");
 
 function openPopupPreview(event) {
   const popupImage = popupWindow.querySelector(".popup__image");
@@ -174,11 +155,6 @@ function openPopupPreview(event) {
   popupWindow.classList.add("popup_open");
 }
 
-function closePopupPreview() {
-  popupWindow.classList.remove('popup_open');
-};
-
-popupWindowClose.addEventListener('click', closePopupPreview);
 elementImage.forEach((item) => {
   item.addEventListener('click', openPopupPreview);
 });
