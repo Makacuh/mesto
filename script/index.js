@@ -1,20 +1,20 @@
-let popup = document.querySelector(".popup");
-let editButton = document.querySelector(".profile__edit-button");
-let closePopup = popup.querySelector(".popup__close");
-let authorName = document.querySelector(".profile__title");
-let authorAbout = document.querySelector(".profile__subtitle");
-let titleInput = popup.querySelector("#input-popup-title");
-let subtitleInput = popup.querySelector("#input-popup-subtitle");
-let profileForm = popup.querySelector(".popup__form");
+const popup = document.querySelector(".popup");
+const editButton = document.querySelector(".profile__edit-button");
+const popupClose = popup.querySelector(".popup__close");
+const authorName = document.querySelector(".profile__title");
+const authorAbout = document.querySelector(".profile__subtitle");
+const titleInput = popup.querySelector("#input-popup-title");
+const subtitleInput = popup.querySelector("#input-popup-subtitle");
+const profileForm = popup.querySelector(".popup__form");
 
 
-function popupOpen() {
+function openPopup() {
   titleInput.value = authorName.textContent;
   subtitleInput.value = authorAbout.textContent;
   popup.classList.add('popup_open');
 };
 
-function popupClose() {
+function closePopup() {
   popup.classList.remove('popup_open');
 };
 
@@ -24,24 +24,24 @@ function handleProfileEditSubmit(event) {
   authorName.textContent = titleInput.value;
   authorAbout.textContent = subtitleInput.value;
 
-  popupClose();
+  closePopup();
   profileForm.reset();
 
 }
 
 profileForm.addEventListener('submit', handleProfileEditSubmit);
-editButton.addEventListener("click", popupOpen);
-closePopup.addEventListener("click", popupClose);
+editButton.addEventListener("click", openPopup);
+popupClose.addEventListener("click", closePopup);
 
 //Автоматическое добавление карточек
 
-let addButton = document.querySelector(".profile__add-button");
-let placeName = document.querySelector(".element__title");
-let addPopup = document.querySelector(".popup-place");
-let placeTitleInput = addPopup.querySelector("#element-name");
-let placeSubtitleInput = addPopup.querySelector("#element-link");
-let closeAddPopup = addPopup.querySelector(".popup__close");
-let AddForm = addPopup.querySelector(".popup__form-add-element");
+const addButton = document.querySelector(".profile__add-button");
+const placeName = document.querySelector(".element__title");
+const addPopup = document.querySelector(".popup-place");
+const placeTitleInput = addPopup.querySelector("#element-name");
+const placeSubtitleInput = addPopup.querySelector("#element-link");
+const closeAddPopup = addPopup.querySelector(".popup__close");
+const addForm = addPopup.querySelector(".popup__form-add-element");
 
 const initialCards = [
   {
@@ -82,27 +82,20 @@ const placesBox = document.querySelector(".elements");
 
 //Автоматическое добавление элементов массива
 
-const placeInfo = initialCards.map(function (item) {
-  return {
-    name: item.name,
-    link: item.link
-  };
-});
+  const createElement = (initialCards) => {
+    const placeElement = placeTemplate.querySelector(".element").cloneNode(true);
+  placeElement.querySelector(".element__title").textContent = initialCards.name;
+  placeElement.querySelector(".element__image").src = initialCards.link;
+  placesBox.prepend(placeElement);
+return placeElement;
+  }
 
-function render() {
-  placeInfo.forEach(renderElement);
+
+function renderElement(initialCards,placesBox) {
+  const card = createElement(initialCards);
 }
+initialCards.forEach(card => {createElement(card);});
 
-function renderElement({ name, link }) {
-  const placeElement = placeTemplate.querySelector(".element").cloneNode(true);
-    
-  placeElement.querySelector(".element__title").textContent = name;
-  placeElement.querySelector(".element__image").src = link;
-
-  placesBox.append(placeElement);
-}
-
-render();
 
 //Открытие попапа
 
@@ -120,19 +113,16 @@ function popupAddClose() {
 
 function handleAddSubmit(event) {
   event.preventDefault();
-
-  const placeElement = placeTemplate.querySelector(".element").cloneNode(true);
   
-  placeElement.querySelector(".element__title").textContent = placeTitleInput.value;
-  placeElement.querySelector(".element__image").src = placeSubtitleInput.value;
-
-  placesBox.prepend(placeElement);
-
+createElement({
+  name: placeTitleInput.value,
+  link: placeSubtitleInput.value
+});
   popupAddClose();
-  AddForm.reset();
+  addForm.reset();
 }
 
-AddForm.addEventListener('submit', handleAddSubmit);
+addForm.addEventListener('submit', handleAddSubmit);
 addButton.addEventListener("click", popupAddOpen);
 closeAddPopup.addEventListener("click", popupAddClose);
 
@@ -166,17 +156,17 @@ deleteElement.forEach((item) => {
 
 //PREVIEW
 
-let elementImage = document.querySelectorAll(".element__image");
-let popupWindow = document.querySelector(".popup_window");
-let elementTitle = document.querySelectorAll(".element__title");
-let popupWindowClose = popupWindow.querySelector(".popup__close");
+const elementImage = document.querySelectorAll(".element__image");
+const popupWindow = document.querySelector(".popup_window");
+const elementTitle = document.querySelectorAll(".element__title");
+const popupWindowClose = popupWindow.querySelector(".popup__close");
 
-function popupPreviewOpen(event) {
-  let popupImage = popupWindow.querySelector(".popup__image");
-  let elementImage = event.target.closest(".element__image");
-  let element = event.target.closest(".element");
-  let placeName = element.querySelector(".element__title");
-  let popupFigcaption = popupWindow.querySelector(".popup__figcaption");
+function openPopupPreview(event) {
+  const popupImage = popupWindow.querySelector(".popup__image");
+  const elementImage = event.target.closest(".element__image");
+  const element = event.target.closest(".element");
+  const placeName = element.querySelector(".element__title");
+  const popupFigcaption = popupWindow.querySelector(".popup__figcaption");
 
   popupImage.src = elementImage.src;
   popupImage.alt = elementImage.alt;
@@ -184,11 +174,11 @@ function popupPreviewOpen(event) {
   popupWindow.classList.add("popup_open");
 }
 
-function popupPreviewClose() {
+function closePopupPreview() {
   popupWindow.classList.remove('popup_open');
 };
 
-popupWindowClose.addEventListener('click', popupPreviewClose);
+popupWindowClose.addEventListener('click', closePopupPreview);
 elementImage.forEach((item) => {
-  item.addEventListener('click', popupPreviewOpen);
+  item.addEventListener('click', openPopupPreview);
 });
