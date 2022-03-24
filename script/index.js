@@ -61,7 +61,8 @@ initialCards.forEach(card => {createElement(card);});
 
 function closePopup(event) {
   const close = event.target.closest(".popup"); 
-  close.classList.remove('popup_open');
+close.classList.remove('popup_open');
+
  };
 
  function openPopup (item){
@@ -110,12 +111,12 @@ createElement({
   name: placeTitleInput.value,
   link: placeSubtitleInput.value
 });
-closePopup();
+closePopup(event);
   addForm.reset();
 });
 
 addButton.addEventListener("click", function () {
-  openPopup(addPopup);
+  openPopup(addPopup)
 });
 
 document.querySelectorAll('.element__like').forEach((like) => {
@@ -134,12 +135,12 @@ profileForm.addEventListener('submit', function (event) {
   event.preventDefault();
   authorName.textContent = titleInput.value;
   authorAbout.textContent = subtitleInput.value;
-  closePopup();
+  closePopup(event);
   profileForm.reset();
 });
 
 editButton.addEventListener("click", function () {
   titleInput.value = authorName.textContent;
   subtitleInput.value = authorAbout.textContent;
-  popup.classList.add('popup_open');
+  openPopup(popup);
 });
