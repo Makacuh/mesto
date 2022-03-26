@@ -17,13 +17,7 @@ const placeTemplate = document.querySelector(".element-template").content;
 const placesBox = document.querySelector(".elements");
 const popupWindow = document.querySelector(".popup_window");
 const elementTitle = document.querySelectorAll(".element__title");
-const createElement = (initialCards) => {
-  const placeElement = placeTemplate.querySelector(".element").cloneNode(true);
-placeElement.querySelector(".element__title").textContent = initialCards.name;
-placeElement.querySelector(".element__image").src = initialCards.link;
-placesBox.prepend(placeElement);
-return placeElement;
-}
+
 const initialCards = [
   {
     name: "Архыз",
@@ -57,7 +51,45 @@ const initialCards = [
   }
 ];
 
-initialCards.forEach(card => {createElement(card);});
+function createElement (item) {
+  const placeElement = placeTemplate.querySelector(".element").cloneNode(true); 
+  const elementCaption = placeElement.querySelector(".element__title");
+  const elementImage = placeElement.querySelector(".element__image");
+  const elementLikeButton = placeElement.querySelector('.element__like');
+  const elementDeleteButton = placeElement.querySelector(".element__btn-trash");
+ 
+  elementImage.src = item.link;
+  elementImage.alt = item.name;
+  elementCaption.textContent = item.name;
+ 
+  elementLikeButton.addEventListener('click', function(evt){
+    evt.target.classList.toggle("element__like_active");
+  })
+ 
+  elementDeleteButton.addEventListener('click', deleteElement);
+ 
+  elementImage.addEventListener('click', () => {openPopupPreview(item)});
+ 
+ return placeElement;
+ }
+ 
+ function initElements() {
+   initialCards.forEach(function (item) {
+    initCards(item);
+ });
+ };
+ 
+ initElements();
+ 
+ function initCards(item) {
+  renderElement(createElement(item));
+}
+
+ function renderElement(element) {
+   const elements = document.querySelector(".elements");
+   
+   elements.prepend(element);
+ }
 
 function closePopup(event) {
   const close = event.target.closest(".popup"); 
@@ -69,21 +101,15 @@ close.classList.remove('popup_open');
   item.classList.add('popup_open');
 }
 
-function renderElement(initialCards,placesBox) {
-  const card = createElement(initialCards);
-}
 
-function openPopupPreview(event) {
+
+function openPopupPreview(item) {
   const popupImage = popupWindow.querySelector(".popup__image");
-  const elementImage = event.target.closest(".element__image");
-  const element = event.target.closest(".element");
-  const placeName = element.querySelector(".element__title");
   const popupFigcaption = popupWindow.querySelector(".popup__figcaption");
 
-  popupImage.src = elementImage.src;
-  popupImage.alt = elementImage.alt;
-  popupFigcaption.textContent = placeName.textContent;
-  
+  popupImage.src = item.link;
+  popupImage.alt = item.name;
+  popupFigcaption.textContent = name;
   openPopup(popupWindow);
 }
 
@@ -93,43 +119,27 @@ function deleteElement(event) {
   element.remove();
 };
 
-function isLike(event) {
-  event.preventDefault();
-
-  event.target.classList.toggle("element__like_active");
-  
-};
-
 popupClose.forEach((closeItem) => {
   closeItem.addEventListener('click', closePopup);
 });
 
-addForm.addEventListener('submit', function handleAddSubmit(event) {
+ function handleAddSubmit(event) {
   event.preventDefault();
-  
-createElement({
+  initCards({
   name: placeTitleInput.value,
   link: placeSubtitleInput.value
+  
 });
+
 closePopup(event);
   addForm.reset();
-});
+};
 
 addButton.addEventListener("click", function () {
   openPopup(addPopup)
 });
 
-document.querySelectorAll('.element__like').forEach((like) => {
-  like.addEventListener('click', isLike);
-});
-
-document.querySelectorAll(".element__btn-trash").forEach((item) => {
-  item.addEventListener('click', deleteElement);
-});
-
-document.querySelectorAll(".element__image").forEach((item) => {
-  item.addEventListener('click', openPopupPreview);
-});
+ addForm.addEventListener('submit', handleAddSubmit);
 
 profileForm.addEventListener('submit', function (event) {
   event.preventDefault();
