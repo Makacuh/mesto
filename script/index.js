@@ -18,12 +18,12 @@ const placesBox = document.querySelector(".elements");
 const popupWindow = document.querySelector(".popup_window");
 const elementTitle = document.querySelectorAll(".element__title");
 const popupImage = popupWindow.querySelector(".popup__image");
+const popupFigcaption = popupWindow.querySelector(".popup__figcaption");
 
 
 
 function createElement(item) {
   const placeElement = placeTemplate.querySelector(".element").cloneNode(true);
-  const popupFigcaption = popupWindow.querySelector(".popup__figcaption");
   const elementCaption = placeElement.querySelector(".element__title");
   const elementImage = placeElement.querySelector(".element__image");
   const elementLikeButton = placeElement.querySelector('.element__like');
