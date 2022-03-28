@@ -1,7 +1,5 @@
 const popup = document.querySelector(".popup");
-const popupOpen = document.querySelectorAll(".popup");
 const editButton = document.querySelector(".profile__edit-button");
-const popupClose = document.querySelectorAll(".popup__close");
 const authorName = document.querySelector(".profile__title");
 const authorAbout = document.querySelector(".profile__subtitle");
 const titleInput = popup.querySelector("#input-popup-title");
@@ -19,6 +17,10 @@ const popupWindow = document.querySelector(".popup_window");
 const elementTitle = document.querySelectorAll(".element__title");
 const popupImage = popupWindow.querySelector(".popup__image");
 const popupFigcaption = popupWindow.querySelector(".popup__figcaption");
+const elements = document.querySelector(".elements");
+const editClose = document.querySelector("#editClose");
+const addClose = document.querySelector("#addClose");
+const owerviewClose = popupWindow.querySelector("#owerviewClose");
 
 
 
@@ -44,9 +46,7 @@ function createElement(item) {
 }
 
 function initElements() {
-  initialCards.forEach(function (item) {
-    initCards(item);
-  });
+  initialCards.forEach(initCards);
 };
 
 initElements();
@@ -56,14 +56,12 @@ function initCards(item) {
 }
 
 function renderElement(element) {
-  const elements = document.querySelector(".elements");
-
+  createElement(element);
   elements.prepend(element);
 }
 
-function closePopup(event) {
-  const close = event.target.closest(".popup");
-  close.classList.remove('popup_open');
+function closePopup(item) {
+ item.classList.remove('popup_open');
 
 };
 
@@ -90,13 +88,22 @@ function handleAddSubmit(event) {
 
   });
 
-  closePopup(event);
+  closePopup(addPopup);
   addForm.reset();
 };
 
-popupClose.forEach((closeItem) => {
-  closeItem.addEventListener('click', closePopup);
-});
+function editForm (event) {
+  event.preventDefault();
+  authorName.textContent = titleInput.value;
+  authorAbout.textContent = subtitleInput.value;
+  closePopup(popup);
+  profileForm.reset();
+};
+
+editClose.addEventListener('click', function() {closePopup(popup)});
+addClose.addEventListener('click', function() {closePopup(addPopup)});
+owerviewClose.addEventListener('click', function() {closePopup(popupWindow)});
+
 
 addButton.addEventListener("click", function () {
   openPopup(addPopup)
@@ -104,13 +111,7 @@ addButton.addEventListener("click", function () {
 
 addForm.addEventListener('submit', handleAddSubmit);
 
-profileForm.addEventListener('submit', function (event) {
-  event.preventDefault();
-  authorName.textContent = titleInput.value;
-  authorAbout.textContent = subtitleInput.value;
-  closePopup(event);
-  profileForm.reset();
-});
+profileForm.addEventListener('submit', editForm);
 
 editButton.addEventListener("click", function () {
   titleInput.value = authorName.textContent;
