@@ -54,19 +54,21 @@
                 <span class="popup__error-message input-popup-subtitle-error"></span>
                 <button type="submit" class="popup__button" aria-label="Сохранить">Сохранить</button>
             </form>
-            <button type="button" class="popup__close" aria-label="Закрыть"></button>
+            <button type="button" class="popup__close" aria-label="Закрыть" id="editClose"></button>
         </div>
     </div>
 
     <div class="popup popup_type_place">
         <div class="popup__container">
-            <button type="button" class="popup__close"></button>
+            <button type="button" class="popup__close" id="addClose"></button>
             <h3 class="popup__title">Новое место</h3>
             <form class="popup__form popup__form-add-element" name="place-form" novalidate>
-                <input type="text" id="element-name" name="name" class="popup__input popup__input_name"
+                <input class="popup__input popup__input_name" type="text" id="card-name" name="name" 
                     placeholder="Название" minlength="2" maxlength="30" required>
-                <input type="url" id="element-link" name="link" class="popup__input popup__input_link"
+                    <span class="popup__error-message card-name-error"></span>
+                <input class="popup__input popup__input_link" type="url" id="card-link" name="link" 
                     placeholder="Ссылка на картинку" required>
+                    <span class="popup__error-message card-link-error"></span>
                 <button type="submit" class="popup__button " aria-label="Добавить место">Создать</button>
             </form>
         </div>
@@ -78,7 +80,7 @@
                 <img class="popup__image" src="#" alt="Фото места">
                 <figcaption class="popup__figcaption"></figcaption>
             </figure>
-            <button type="button" class="popup__close"></button>
+            <button type="button" class="popup__close" id="owerviewClose"></button>
         </div>
     </div>
 
@@ -95,8 +97,8 @@
     </template>
 </body>
 
-<script src="./script/card.js"></script>
-<script src="./script/index.js"></script>
+<script src="./scripts/card.js"></script>
+<script src="./scripts/index.js"></script>
 
 
 </html>
