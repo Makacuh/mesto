@@ -74,36 +74,32 @@ export function openPopup(item) {
   document.addEventListener('keydown', closeByEscape);
 }
 
-function openPopupPreview(item) {
+/*function openPopupPreview(item) {
   popupImage.src = item.link;
   popupImage.alt = item.name;
   popupFigcaption.textContent = item.name;
   openPopup(popupWindow);
-}
+}*/
 
-function deleteElement(event) {
+/*function deleteElement(event) {
   event.target.closest('.element').remove();
-};
+};*/
 
 function handleAddSubmit(event) {
-  /*event.preventDefault();
+  event.preventDefault();
+
   const disabled = event.target.querySelector('.popup__button');
-  initCards({
-    name: placeTitleInput.value,
-    link: placeSubtitleInput.value
-  });
-  disabled.setAttribute('disabled', true);
-  disabled.classList.add('popup__button_disabled');
-  closePopup(addPopup);
-  addForm.reset();*/
+
   const element = {};
   element.name= placeTitleInput.value;
   element.link = placeSubtitleInput.value;
-  renderCard(element, ".element-template");
+  renderElement(element, '.element-template');
   
   placeTitleInput.value = "";
   placeSubtitleInput.value = "";
-  resetSubmitButton();
+  disabled.setAttribute('disabled', true);
+  disabled.classList.add('popup__button_disabled');
+  addForm.reset();
 
   closePopup(addPopup);
 
