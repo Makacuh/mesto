@@ -1,3 +1,6 @@
+import {Card} from './card.js';
+import {initialCards} from './card.js';
+
 const profilePopup = document.querySelector(".profile-popup");
 const editButton = document.querySelector(".profile__edit-button");
 const authorName = document.querySelector(".profile__title");
@@ -13,17 +16,17 @@ const placeSubtitleInput = addPopup.querySelector("#card-link");
 const addForm = addPopup.querySelector(".popup__form-add-element");
 const placeTemplate = document.querySelector(".element-template").content;
 const placesBox = document.querySelector(".elements");
-const popupWindow = document.querySelector(".popup_window");
+export const popupWindow = document.querySelector(".popup_window");
 const elementTitle = document.querySelectorAll(".element__title");
-const popupImage = popupWindow.querySelector(".popup__image");
-const popupFigcaption = popupWindow.querySelector(".popup__figcaption");
+export const popupImage = popupWindow.querySelector(".popup__image");
+export const popupFigcaption = popupWindow.querySelector(".popup__figcaption");
 const elements = document.querySelector(".elements");
 const editClose = document.querySelector("#editClose");
 const addClose = document.querySelector("#addClose");
 const owerviewClose = popupWindow.querySelector("#owerviewClose");
 const popups = document.querySelectorAll('.popup')
 
-function createElement(item) {
+/*function createElement(item) {
   const placeElement = placeTemplate.querySelector(".element").cloneNode(true);
   const elementCaption = placeElement.querySelector(".element__title");
   const elementImage = placeElement.querySelector(".element__image");
@@ -38,21 +41,27 @@ function createElement(item) {
   elementDeleteButton.addEventListener('click', deleteElement);
   elementImage.addEventListener('click', () => { openPopupPreview(item) });
   return placeElement;
+}*/
+
+//function initElements() {
+ // initialCards.forEach(initCards);
+//};
+
+//initElements();
+
+//function initCards(item) {
+ // renderElement(createElement(item));
+//}
+
+function renderElement(item, template) {
+  const card = new Card(item, template);
+  const cardElement = card.generateCard();
+  elements.prepend(cardElement);
 }
 
-function initElements() {
-  initialCards.forEach(initCards);
-};
-
-initElements();
-
-function initCards(item) {
-  renderElement(createElement(item));
-}
-
-function renderElement(element) {
-  elements.prepend(element);
-}
+initialCards.forEach(function (card) {
+  renderElement(card, '.element-template')
+});
 
 function closePopup(item) {
   item.classList.remove('popup_open');
@@ -60,7 +69,7 @@ function closePopup(item) {
 
 };
 
-function openPopup(item) {
+export function openPopup(item) {
   item.classList.add('popup_open');
   document.addEventListener('keydown', closeByEscape);
 }
@@ -77,7 +86,7 @@ function deleteElement(event) {
 };
 
 function handleAddSubmit(event) {
-  event.preventDefault();
+  /*event.preventDefault();
   const disabled = event.target.querySelector('.popup__button');
   initCards({
     name: placeTitleInput.value,
@@ -86,7 +95,19 @@ function handleAddSubmit(event) {
   disabled.setAttribute('disabled', true);
   disabled.classList.add('popup__button_disabled');
   closePopup(addPopup);
-  addForm.reset();
+  addForm.reset();*/
+  const element = {};
+  element.name= placeTitleInput.value;
+  element.link = placeSubtitleInput.value;
+  renderCard(element, ".element-template");
+  
+  placeTitleInput.value = "";
+  placeSubtitleInput.value = "";
+  resetSubmitButton();
+
+  closePopup(addPopup);
+
+
 };
 
 function editForm(event) {
@@ -128,8 +149,4 @@ popups.forEach((popup) => {
     }
   })
 })
-
-
-
-
 
