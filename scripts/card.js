@@ -1,4 +1,4 @@
-import {popupImage, popupFigcaption, popupWindow, openPopup} from './index.js';
+import { popupImage, popupFigcaption, popupWindow, openPopup } from './index.js';
 
 export const initialCards = [
   {
@@ -57,7 +57,7 @@ export class Card {
     this._element.querySelector('.element__title').textContent = this._name;
 
     this._setListenElements();
-  
+
     return this._element;
   }
 
@@ -77,8 +77,6 @@ export class Card {
     popupFigcaption.textContent = previewFigcaption.textContent;
     openPopup(popupWindow);
   }
-
-  
 
   _setListenElements() {
     this._element.querySelector('.element__btn-trash').addEventListener('click', () => {
