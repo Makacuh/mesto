@@ -1,43 +1,14 @@
-import { popupImage, popupFigcaption, popupWindow, openPopup } from './index.js';
+import { popupImage, popupFigcaption, popupWindow,  } from './index.js';
+import {openPopup} from './utils.js';
 
-export const initialCards = [
-  {
-    name: "Архыз",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg"
-  },
-  {
-    name: "Челябинская область",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg"
-  },
-  {
-    name: "Иваново",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg"
-  },
-  {
-    name: "Камчатка",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg"
-  },
-  {
-    name: "Холмогорский район",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg"
-  },
-  {
-    name: "Байкал",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg"
-  }
-];
+
 
 export class Card {
   constructor(data, cardSelector) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
+    
   }
 
   _getTemplate() {
@@ -50,10 +21,12 @@ export class Card {
   }
 
   generateCard() {
+    
     this._element = this._getTemplate();
+    this._card = this._element.querySelector('.element__image');
 
-    this._element.querySelector('.element__image').src = this._link;
-    this._element.querySelector('.element__image').alt = this._name;
+    this._card.src = this._link;
+    this._card.alt = this._name;
     this._element.querySelector('.element__title').textContent = this._name;
 
     this._setListenElements();
@@ -62,7 +35,9 @@ export class Card {
   }
 
   _deleteElement() {
-    this._element.closest('.element').remove();
+    
+    this._element.remove();
+    this._element = null;
   }
 
   _likeElement() {
@@ -70,11 +45,9 @@ export class Card {
   }
 
   _openPopupPreview() {
-    const previewImage = this._element.querySelector('.element__image');
-    const previewFigcaption = this._element.querySelector('.element__title');
-    popupImage.src = previewImage.src;
-    popupImage.alt = previewFigcaption.textContent;
-    popupFigcaption.textContent = previewFigcaption.textContent;
+    popupImage.src = this._link;
+    popupImage.alt = this._name;
+    popupFigcaption.textContent = this._name;
     openPopup(popupWindow);
   }
 
