@@ -1,14 +1,11 @@
-import { popupImage, popupFigcaption, popupWindow,  } from './index.js';
-import {openPopup} from './utils.js';
-
-
+import { popupImage, popupFigcaption, popupWindow } from './index.js';
+import { openPopup } from './utils.js';
 
 export class Card {
   constructor(data, cardSelector) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
-    
   }
 
   _getTemplate() {
@@ -21,7 +18,7 @@ export class Card {
   }
 
   generateCard() {
-    
+
     this._element = this._getTemplate();
     this._card = this._element.querySelector('.element__image');
 
@@ -35,7 +32,7 @@ export class Card {
   }
 
   _deleteElement() {
-    
+
     this._element.remove();
     this._element = null;
   }

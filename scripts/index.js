@@ -1,6 +1,7 @@
 import { Card } from './Card.js';
 import { initialCards } from './initialCards.js';
 import { FormValidator } from './FormValidator.js';
+import { openPopup } from './utils.js';
 
 const profilePopup = document.querySelector(".profile-popup");
 const buttonEdit = document.querySelector(".profile__edit-button");
@@ -19,7 +20,6 @@ export const popupImage = popupWindow.querySelector(".popup__image");
 export const popupFigcaption = popupWindow.querySelector(".popup__figcaption");
 const elements = document.querySelector(".elements");
 const popups = document.querySelectorAll('.popup')
-
 
 const arrayValidation = {
   formSelector: '.popup__form',
@@ -53,8 +53,6 @@ export function closePopup(item) {
 
 };
 
-
-
 function handleAddSubmit(event) {
   event.preventDefault();
 
@@ -82,8 +80,6 @@ function editForm(event) {
   profileForm.reset();
 };
 
-
-
 buttonAdd.addEventListener("click", function () {
   openPopup(popupAdd)
 });
@@ -100,8 +96,8 @@ buttonEdit.addEventListener("click", function () {
 
 popups.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
-    if (evt.target.classList.contains('popup_open') || evt.target.classList.contains('popup__close')) { 
+    if (evt.target.classList.contains('popup_open') || evt.target.classList.contains('popup__close')) {
       closePopup(popup);
-  }  
+    }
   })
 })
