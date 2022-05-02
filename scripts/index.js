@@ -47,11 +47,11 @@ initialCards.forEach(function (card) {
   renderElement(card, '.element-template')
 });
 
-/*export function closePopup(item) {
+export function closePopup(item) {
   item.classList.remove('popup_open');
   document.removeEventListener('keydown', closeByEscape);
 
-};*/
+};
 
 function handleAddSubmit(event) {
   event.preventDefault();
