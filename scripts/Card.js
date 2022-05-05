@@ -2,10 +2,11 @@ import { popupImage, popupFigcaption, popupWindow } from './index.js';
 import { openPopup } from './utils.js';
 
 export class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector,handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -56,7 +57,7 @@ export class Card {
       this._likeElement();
     });
     this._element.querySelector('.element__image').addEventListener('click', () => {
-      this._openPopupPreview();
+      this._handleCardClick(this._name, this._link);
     });
   }
 }

@@ -30,6 +30,10 @@ const arrayValidation = {
   errorClass: 'popup__error-message_active'
 };
 
+const overviewImage = new PopupWithImage(popupWindow);
+
+overviewImage.setEventListeners();
+
 const formList = Array.from(document.querySelectorAll(arrayValidation.formSelector));
 
 formList.forEach((formElement) => {
@@ -38,7 +42,7 @@ formList.forEach((formElement) => {
 });
 
 function renderElement(item, template) {
-  const card = new Card(item, template);
+  const card = new Card(item, template, handleCardClick);
   const cardElement = card.generateCard();
   elements.prepend(cardElement);
 }
@@ -46,6 +50,22 @@ function renderElement(item, template) {
 initialCards.forEach(function (card) {
   renderElement(card, '.element-template')
 });
+
+function handleCardClick(name, link) {
+  overviewImage.open(name, link);
+};
+
+const createCard = new Section(
+  {
+    items: initialCards,
+    renderer: renderElement
+  },
+  elements
+);
+
+createCard.renderItems();
+
+const infoUser = new UserInfo(authorName , authorAbout);
 
 export function closePopup(item) {
   item.classList.remove('popup_open');
@@ -71,6 +91,18 @@ function handleAddSubmit(event) {
 
   closePopup(popupAdd);
 };
+
+const popupAddSection = new PopupWithForm('.popup_type_place', (data) => {
+	
+	
+		const card = createCard(data)
+		cardsSection.addItem(card);
+		popupAddSection.close();
+	
+	
+});
+
+popupAddSection.setEventListeners();
 
 function editForm(event) {
   event.preventDefault();
