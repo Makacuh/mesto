@@ -1,6 +1,6 @@
-import { closePopup } from './index.js';
+//import { closePopup } from './index.js';
 
-export function openPopup(item) {
+/*export function openPopup(item) {
   item.classList.add('popup_open');
   document.addEventListener('keydown', closeByEscape);
 }
@@ -11,3 +11,4 @@ export function closeByEscape(evt) {
     closePopup(popupOpened);
   }
 }
+*/

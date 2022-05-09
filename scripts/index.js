@@ -1,7 +1,13 @@
-import { Card } from './Card.js';
 import { initialCards } from './initialCards.js';
 import { FormValidator } from './FormValidator.js';
-import { openPopup } from './utils.js';
+//import { openPopup } from './utils.js';
+
+import Card from '../components/Card.js';
+import Section from '../components/Section.js';
+import Popup from '../components/Popup.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import UserInfo from '../components/UserInfo.js';
 
 const profilePopup = document.querySelector(".profile-popup");
 const buttonEdit = document.querySelector(".profile__edit-button");
@@ -30,9 +36,14 @@ const arrayValidation = {
   errorClass: 'popup__error-message_active'
 };
 
-const overviewImage = new PopupWithImage(popupWindow);
+const overviewImage = new PopupWithImage({popupSelector: ".popup_window", img: ".popup__image", text: ".popup__figcaption"});
 
 overviewImage.setEventListeners();
+
+function handleCardClick(name, link) {
+  
+  overviewImage.open(name, link);
+};
 
 const formList = Array.from(document.querySelectorAll(arrayValidation.formSelector));
 
@@ -41,39 +52,37 @@ formList.forEach((formElement) => {
   formValidator.enableValidation();
 });
 
-function renderElement(item, template) {
-  const card = new Card(item, template, handleCardClick);
+function renderElement(data) {
+  const card = new Card(data, '.element-template', handleCardClick);
   const cardElement = card.generateCard();
   elements.prepend(cardElement);
 }
 
-initialCards.forEach(function (card) {
+/*initialCards.forEach(function (card) {
   renderElement(card, '.element-template')
-});
+});*/
 
-function handleCardClick(name, link) {
-  overviewImage.open(name, link);
-};
+
 
 const createCard = new Section(
   {
     items: initialCards,
     renderer: renderElement
   },
-  elements
+  '.elements'
 );
 
 createCard.renderItems();
 
-const infoUser = new UserInfo(authorName , authorAbout);
+const infoUser = new UserInfo({name: ".profile__title", info: ".profile__subtitle"});
 
-export function closePopup(item) {
+/*export function closePopup(item) {
   item.classList.remove('popup_open');
   document.removeEventListener('keydown', closeByEscape);
 
-};
+};*/
 
-function handleAddSubmit(event) {
+/*function handleAddSubmit(event) {
   event.preventDefault();
 
   const disabled = event.target.querySelector('.popup__button');
@@ -90,13 +99,13 @@ function handleAddSubmit(event) {
   formAdd.reset();
 
   closePopup(popupAdd);
-};
+};*/
 
 const popupAddSection = new PopupWithForm('.popup_type_place', (data) => {
 	
 	
-		const card = createCard(data)
-		cardsSection.addItem(card);
+		//const card = createCard(data)
+		createCard.addItem(renderElement(data));
 		popupAddSection.close();
 	
 	
@@ -104,32 +113,39 @@ const popupAddSection = new PopupWithForm('.popup_type_place', (data) => {
 
 popupAddSection.setEventListeners();
 
-function editForm(event) {
+const editProfile = new PopupWithForm('.profile-popup', (data) => {
+  infoUser.setUserInfo(data);
+  editProfile.close();
+});
+
+editProfile.setEventListeners();
+
+/*function editForm(event) {
   event.preventDefault();
   authorName.textContent = titleInput.value;
   authorAbout.textContent = subtitleInput.value;
   closePopup(profilePopup);
   profileForm.reset();
-};
+};*/
 
-buttonAdd.addEventListener("click", function () {
-  openPopup(popupAdd)
+buttonAdd.addEventListener("click", () => {
+  popupAddSection.open();
 });
 
-formAdd.addEventListener('submit', handleAddSubmit);
+//formAdd.addEventListener('submit', handleAddSubmit);
 
-profileForm.addEventListener('submit', editForm);
+//profileForm.addEventListener('submit', editForm);
 
 buttonEdit.addEventListener("click", function () {
   titleInput.value = authorName.textContent;
   subtitleInput.value = authorAbout.textContent;
-  openPopup(profilePopup);
+  editProfile.open();
 });
 
-popups.forEach((popup) => {
+/*popups.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
     if (evt.target.classList.contains('popup_open') || evt.target.classList.contains('popup__close')) {
       closePopup(popup);
     }
   })
-})
+})*/
