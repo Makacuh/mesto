@@ -1,9 +1,6 @@
-import { popupImage, popupFigcaption, popupWindow } from '../scripts/index.js';
-//import { openPopup } from '../scripts/utils.js';
-
 export default class Card {
-  constructor(data, cardSelector,handleCardClick) {
-    
+  constructor(data, cardSelector, handleCardClick) {
+
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
@@ -43,13 +40,6 @@ export default class Card {
   _likeElement() {
     this._element.querySelector('.element__like').classList.toggle('element__like_active');
   }
-
-  /*_openPopupPreview() {
-    popupImage.src = this._link;
-    popupImage.alt = this._name;
-    popupFigcaption.textContent = this._name;
-    openPopup(popupWindow);
-  }*/
 
   _setListenElements() {
     this._element.querySelector('.element__btn-trash').addEventListener('click', () => {
