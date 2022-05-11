@@ -1,7 +1,7 @@
 {
   "name": "mesto",
   "version": "0.0.1",
-  "description": "<h1>Место</h1>\r <p>Интерактивный сервис содержащий информацию о профиле пользователя с красивыми фотографиями.</p>",
+  "description": "**Интерактивный сервис содержащий информацию о профиле пользователя с красивыми фотографиями.**",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://makacuh.github.io/mesto"
+    "url": "git+https://github.com/makacuh/mesto.git"
   },
   "author": "makacuh",
   "license": "ISC",
@@ -20,7 +20,7 @@
   "devDependencies": {
     "@babel/core": "^7.17.10",
     "@babel/preset-env": "^7.17.10",
-    "autoprefixer": "^10.4.7",
+    "autoprefixer": "^10.4.6",
     "babel-loader": "^8.2.5",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.1",
@@ -33,6 +33,6 @@
     "webpack-dev-server": "^4.8.1"
   },
   "dependencies": {
-    "core-js": "^3.22.5"
+    "core-js": "^3.22.3"
   }
 }
