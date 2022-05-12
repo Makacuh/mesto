@@ -12,13 +12,13 @@
 <body class="page">
 
     <header class="header">
-        <img class="header__logo" src="./image/logo.svg" alt="Логотип место">
+        <div class="header__logo"></div>
     </header>
 
     <main>
 
         <section class="profile">
-            <img class="profile__avatar" src="./image/Avatar.png" alt="Аватар">
+            <div class="profile__avatar"></div>
             <div class="profile__info">
                 <div class="profile__name">
                     <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -45,7 +45,7 @@
     <div class="popup profile-popup">
         <div class="popup__container">
             <h2 class="popup__name">Редактировать профиль</h2>
-            <form class="popup__form" name="edit-form" novalidate>
+            <form class="popup__form popup__edit-element" name="edit-form" novalidate>
                 <input
                 type="text"
                 class="popup__input"
@@ -122,6 +122,6 @@
     </template>
 </body>
 
-
+<script type="module" src="/src/pages/index.js"></script>
 
 </html>

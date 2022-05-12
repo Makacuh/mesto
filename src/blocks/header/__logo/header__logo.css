@@ -1,17 +1,19 @@
 .header__logo {
   width: 142px;
   height: 33px;
-  margin: 0;
-  padding-bottom: 40px;
+  background-image: url(../../../image/logo.svg);
+  background-size: cover;
 }
 
 @media (max-width: 900px) {
   .header__logo {
-    width: 104px;
-    height: 25px;
-    padding-bottom: 31px;
     margin-left: 27px;
-    display: flex;
-    align-content: center;
+  }
+}
+
+@media (max-width: 350px) {
+  .header__logo {
+    width: 103px;
+    height: 24px;
   }
 }

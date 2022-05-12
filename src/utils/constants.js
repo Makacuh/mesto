@@ -4,6 +4,9 @@ export const authorName = document.querySelector(".profile__title");
 export const authorAbout = document.querySelector(".profile__subtitle");
 export const titleInput = profilePopup.querySelector("#input-popup-title");
 export const subtitleInput = profilePopup.querySelector("#input-popup-subtitle");
+export const formCard = document.querySelector(".popup__form-add-element");
+export const formEdit = document.querySelector(".popup__edit-element");
+
 
 export const buttonAdd = document.querySelector(".profile__add-button");
 export const popupAdd = document.querySelector(".popup_type_place");
