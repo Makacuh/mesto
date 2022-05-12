@@ -2,7 +2,7 @@
   width: 142px;
   height: 33px;
   background-image: url(../../../image/logo.svg);
-  background-size: cover;
+ 
 }
 
 @media (max-width: 900px) {
