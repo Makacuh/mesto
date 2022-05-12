@@ -13,8 +13,4 @@ export default class Section {
   addItem(element) {
     this._container.append(element);
   }
-  //setItems(items) {
-  //  this._items = items;
- // }
-
 }
