@@ -5,6 +5,7 @@
     color: #FF0000;
     border-bottom-color: red;
     margin: 0 36px;
+    min-height: 30px;
 }
 
 @media (max-width: 768px) {
