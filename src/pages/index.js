@@ -10,7 +10,7 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 
-import { buttonEdit, authorName, authorAbout, titleInput, subtitleInput, buttonAdd,formCard, formEdit, elements, arrayValidation } from '../utils/constants.js';
+import { buttonEdit, authorName, authorAbout, titleInput, subtitleInput, buttonAdd, formCard, formEdit, elements, arrayValidation } from '../utils/constants.js';
 
 const formValidatorElement = new FormValidator(arrayValidation, formCard);
 formValidatorElement.enableValidation();
@@ -42,15 +42,17 @@ function renderElement(data) {
 
 
 
-const createCard = new Section(
+const cardList = new Section(
   {
     items: initialCards,
-    renderer: renderElement
+    renderer: (data) => {
+      cardList.setItem(renderElement(data));
+    }
   },
   '.elements'
 );
 
-createCard.renderItems();
+cardList.renderItems();
 
 const infoUser = new UserInfo({ name: ".profile__title", info: ".profile__subtitle" });
 
@@ -59,7 +61,7 @@ const infoUser = new UserInfo({ name: ".profile__title", info: ".profile__subtit
 
 const popupAddSection = new PopupWithForm('.popup_type_place', (data) => {
 
-  createCard.addItem(renderElement(data));
+  cardList.addItem(renderElement(data));
   popupAddSection.close();
 
 });

@@ -7,7 +7,7 @@ export default class Section {
   renderItems() {
     this._items.forEach(item => {
       const cardElement = this._renderer(item);
-      this.setItem(cardElement);
+      //this.setItem(cardElement);
     });
   }
 
