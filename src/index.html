@@ -17,7 +17,9 @@
     <main>
 
         <section class="profile">
-            <div class="profile__avatar"></div>
+            <div class="profile__avatar">
+                <button type="button" class="profile__avatar-button"></button>
+            </div>
             <div class="profile__info">
                 <div class="profile__name">
                     <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -119,6 +121,19 @@
             </div>
         </li>
     </template>
+    <template id="element">
+        <li class="element">
+              <img class="element__image">
+              <div class="element__info">
+                  <h2 class="element__title"></h2>
+                    <div class="element__like-container">
+                      <button type="button" class="element__like"></button>
+                        <span class="element__likes-counter"></span>
+                    </div>
+                  <button type="button" class="card__delete-icon"></button>
+              </div>
+          </li>
+        </template>
 </body>
 
 
