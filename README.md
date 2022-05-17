@@ -6,6 +6,6 @@
 <p>В проекте реализованы функции редактирования профиля.</p>
 
 
-<p>Ссылка на проект: <a href="https://makacuh.github.io/mesto/">GH pages/</a>
+<p>Ссылка на проект: <a href="https://makacuh.github.io/mesto/index.html">Github Pages</a>
 
 
