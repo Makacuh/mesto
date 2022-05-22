@@ -107,6 +107,24 @@ const editProfile = new PopupWithForm({popupSelector:'.profile-popup', handleFor
 
 editProfile.setEventListeners();
 
+const editAvatarPopup = new PopupWithForm({
+  popupSelector: '.profile__popup',
+  handleFormSubmit: (data) => {
+    editAvatarPopup.loading(true);
+    api.editAvatar(data)
+      .then((data) => {
+        avatar.src = data.avatar;
+        editAvatarPopup.close();
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      })
+      .finally(() => {
+        editAvatarPopup.loading(false);
+      });
+  }
+});
+
 
 buttonAdd.addEventListener("click", () => {
   formValidatorElement.resetErrors();
