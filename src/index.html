@@ -44,10 +44,40 @@
         <p class="footer__copyright">&copy; 2022. Алексей Винник</p>
     </footer>
 
+    <div class="popup popup_type_delete-card">
+        <div class="popup__container">
+          <button type="button" class="popup__close"></button>
+          <h3 class="popup__title">Вы уверены?</h3>
+          <form  name="popup-confirm" class="popup__form form" novalidate>
+              <button type="submit" class="form__submit">Да</button>
+          </form>
+        </div>
+      </div>
+
+    <div class="popup popup_type_avatar">
+        <div class="popup__container">
+          <button type="button" class="popup__close"></button>
+          <h3 class="popup__title">Обновить аватар</h3>
+          <form name="edit-avatar-form"  class="popup__form edit-avatar-form form" id="popup-form-avatar" novalidate>
+            <fieldset class="form__set">
+              <input
+                type="url"
+                name="avatar"
+                id="avatar"
+                placeholder="Ссылка на картинку"
+                class="form__input"
+                required>
+              <span id="avatar-error" class="popup__error-message"></span>
+              <button type="submit" class="form__submit">Сохранить</button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+
     <div class="popup profile-popup">
         <div class="popup__container">
             <h2 class="popup__name">Редактировать профиль</h2>
-            <form class="popup__form popup__edit-element" name="edit-form" novalidate>
+            <form class="popup__form popup__edit-element" name="edit-form" id="popup__edit-element" novalidate>
                 <input
                 type="text"
                 class="popup__input"
@@ -80,7 +110,7 @@
         <div class="popup__container">
             <button type="button" class="popup__close" id="addClose"></button>
             <h3 class="popup__title">Новое место</h3>
-            <form class="popup__form popup__form-add-element" name="place-form" novalidate>
+            <form class="popup__form popup__form-add-element" name="place-form" id="popup__form-add-element" novalidate>
                 <input 
                 class="popup__input popup__input_name"
                 type="text" id="card-name" name="name"
@@ -102,6 +132,8 @@
         </div>
     </div>
 
+    
+
     <div class="popup popup_window">
         <div class="popup__preview">
             <figure class="popup__figure">
@@ -117,24 +149,15 @@
             <img class="element__image" src="#" alt="">
             <div class="element__info">
                 <h2 class="element__title"></h2>
-                <button type="button" class="element__like" aria-label="Плюс"></button>
+                <div class="element__like-container">
+                    <button type="button" class="element__like"></button>
+                      <span class="element__likes-counter"></span>
+                  </div>
                 <button class="element__btn-trash" type="button" title="Удалить"></button>
             </div>
         </li>
     </template>
-    <template id="element">
-        <li class="element">
-              <img class="element__image">
-              <div class="element__info">
-                  <h2 class="element__title"></h2>
-                    <div class="element__like-container">
-                      <button type="button" class="element__like"></button>
-                        <span class="element__likes-counter"></span>
-                    </div>
-                  <button type="button" class="card__delete-icon"></button>
-              </div>
-          </li>
-        </template>
+    
 </body>
 
 

@@ -1,6 +1,6 @@
 export default class Api {
     constructor(options) {
-      this._baseUrl = options.baseUrl;
+      this._url = options.url;
       this._headers = options.headers;
     }
   
@@ -13,14 +13,14 @@ export default class Api {
   
     
     getInitialCards() {
-      return fetch(`${this._baseUrl}/cards`, {
+      return fetch(`${this._url}/cards`, {
         headers: this._headers
       })
         .then(res => this._parseResponse(res));
     }
   
     addCard(data) {
-      return fetch(`${this._baseUrl}/cards`, {
+      return fetch(`${this._url}/cards`, {
         method: 'POST',
         headers: this._headers,
         body: JSON.stringify({
@@ -32,7 +32,7 @@ export default class Api {
     }
   
    
-    deleteCard(cardId) {
+    deleteElement(cardId) {
       return fetch(`${this._baseUrl}/cards/${cardId}`, {
         method: 'DELETE',
         headers: this._headers
@@ -60,7 +60,7 @@ export default class Api {
   
     
     getUserInfo() {
-      return fetch(`${this._baseUrl}/users/me`, {
+      return fetch(`${this._url}/users/me`, {
         headers: this._headers
       })
         .then(res => this._parseResponse(res));
@@ -68,7 +68,7 @@ export default class Api {
   
     
     editUserInfo(data) {
-      return fetch(`${this._baseUrl}/users/me`, {
+      return fetch(`${this._url}/users/me`, {
         method: 'PATCH',
         headers: this._headers,
         body: JSON.stringify({
@@ -81,7 +81,7 @@ export default class Api {
   
     
     editAvatar(data) {
-      return fetch(`${this._baseUrl}/users/me/avatar`, {
+      return fetch(`${this._url}/users/me/avatar`, {
         method: 'PATCH',
         headers: this._headers,
         body: JSON.stringify({
