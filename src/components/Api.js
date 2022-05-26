@@ -16,19 +16,19 @@ export default class Api {
       return fetch(`${this._url}/cards`, {
         headers: this._headers
       })
-        .then(res => this._parseResponse(res));
+        .then(this._parseResponse);
     }
   
-    addCard(data) {
+    addCard(prename, url) {
       return fetch(`${this._url}/cards`, {
         method: 'POST',
         headers: this._headers,
         body: JSON.stringify({
-          name: data.name,
-          link: data.link
+          name: prename,
+          link: url
         })
       })
-        .then(res => this._parseResponse(res));
+        .then(this._parseResponse);
     }
   
    
@@ -37,25 +37,16 @@ export default class Api {
         method: 'DELETE',
         headers: this._headers
       })
-        .then(res => this._parseResponse(res));
+        .then(this._parseResponse);
     }
   
    
-    setLike(cardId) {
-      return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-        method: 'PUT',
+    toggleLike(id, methodApi) {
+      return fetch(`${this._url}/cards/${id}/likes`, {
+        method : methodApi,
         headers: this._headers
       })
-        .then(res => this._parseResponse(res));
-    }
-  
-    
-    deleteLike(cardId) {
-      return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-        method: 'DELETE',
-        headers: this._headers
-      })
-        .then(res => this._parseResponse(res));
+      .then(this._parseResponse);
     }
   
     
@@ -63,31 +54,31 @@ export default class Api {
       return fetch(`${this._url}/users/me`, {
         headers: this._headers
       })
-        .then(res => this._parseResponse(res));
+        .then(this._parseResponse);
     }
   
     
-    editUserInfo(data) {
+    editUserInfo(name, info) {
       return fetch(`${this._url}/users/me`, {
         method: 'PATCH',
         headers: this._headers,
         body: JSON.stringify({
-          name: data.username,
-          about: data.job
+          name: name,
+          info: info
         })
       })
-        .then(res => this._parseResponse(res));
+        .then(this._parseResponse);
     }
   
     
-    editAvatar(data) {
+    editAvatar(url) {
       return fetch(`${this._url}/users/me/avatar`, {
         method: 'PATCH',
         headers: this._headers,
         body: JSON.stringify({
-          avatar: data.avatar
+          avatar: url
         })
       })
-        .then(res => this._parseResponse(res));
+        .then(this._parseResponse);
     }
   }

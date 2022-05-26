@@ -10,7 +10,7 @@ export const authorAbout = document.querySelector(".profile__subtitle");
 export const titleInput = profilePopup.querySelector("#input-popup-title");
 export const subtitleInput = profilePopup.querySelector("#input-popup-subtitle");
 export const formCard = popupAddNewCard.querySelector(".popup__form-add-element");
-
+export const linkAvatar = document.querySelector('.profile__avatar');
 export const formEdit = popupEditProfile.querySelector(".popup__edit-element");
 export const formAvatar = popupEditAvatar.querySelector(".edit-avatar-form");
 //export const popupEditAvatar = document.querySelector('.popup_type_avatar');

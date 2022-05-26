@@ -12,7 +12,7 @@ import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from "../components/Api.js";
 
-import { buttonEdit, authorName, authorAbout, titleInput, subtitleInput, buttonAdd, formCard, formEdit, elements, arrayValidation, formAvatar, buttonEditAvatar, popupEditAvatar } from '../utils/constants.js';
+import { buttonEdit, authorName, authorAbout, titleInput, subtitleInput, buttonAdd, formCard, formEdit, elements, linkAvatar,arrayValidation, formAvatar, buttonEditAvatar, popupEditAvatar } from '../utils/constants.js';
 
 const api = new Api({
   url: 'https://mesto.nomoreparties.co/v1/cohort-41',
@@ -21,9 +21,7 @@ const api = new Api({
     'Content-Type': 'application/json'
   }
 });
-//export const formCard = document.querySelector(".popup__form-add-element");
-//export const formEdit = document.querySelector(".popup__edit-element");
-//export const formAvatar = document.querySelector("#popup-form-avatar");
+
 
 
 let userId;
@@ -69,7 +67,7 @@ function renderElement(data) {
 const infoUser = new UserInfo({
   name: ".profile__title",
   info: ".profile__subtitle",
-  avatar: '.profile__avatar'
+  avatar: linkAvatar
 });
 
 
@@ -166,10 +164,10 @@ buttonEditAvatar.addEventListener('click', () => {
   editAvatarPopup.open();
 });
 
-buttonEdit.addEventListener("click", function () {
-  const info = infoUser.getUserInfo();
-  titleInput.value = info.name;
-  subtitleInput.value = info.info;
+buttonEdit.addEventListener("click", () => {
+  const getUserObj = infoUser.getUserInfo();
+  titleInput.value = getUserObj.name;
+  subtitleInput.value = getUserObj.info;
 
   editProfile.open();
   //formValidatorProfile.resetErrors();

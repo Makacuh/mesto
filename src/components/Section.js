@@ -4,8 +4,11 @@ export default class Section {
     this._renderer = renderer;
     this._container = document.querySelector(containerSelector);
   }
-  renderItems(data) {
-    data.forEach(item => this._renderer(item));
+  renderItems() {
+    this._items.forEach(item => {
+      const cardElement = this._renderer(item);
+      this.setItem(cardElement);
+    });
   }
 
   setItem(element) {
