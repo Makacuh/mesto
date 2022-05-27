@@ -1,6 +1,5 @@
 export default class UserInfo {
   constructor({ name, info, avatar }) {
-    console.log(name);
     this._titleProfile = document.querySelector(name);
     this._subtitleProfile = document.querySelector(info);
     this._avatar = avatar;
@@ -12,15 +11,17 @@ export default class UserInfo {
       name: this._titleProfile.textContent,
       info: this._subtitleProfile.textContent,
     }
-    
     return userObj;
   }
 
   setUserInfo({name, info, avatar}) {
-    console.log(avatar);
+    
     this._titleProfile.textContent = name;
+    
     this._subtitleProfile.textContent = info;
+    console.log(info);
     this._avatar.src = avatar;
+    console.log(avatar);
     
   }
 

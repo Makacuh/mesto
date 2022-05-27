@@ -54,7 +54,6 @@ function renderElement(data) {
   const card = new Card(
     data,
     '.element-template',
-    userId,
     handleCardClick,
     handleCardConfirmation,
     api,
@@ -81,6 +80,7 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
       '.elements'
     );
     infoUser.setUserInfo({name: intialUser.name, info: intialUser.about, avatar: intialUser.avatar});
+
     userId = intialUser._id;
     createCard.renderItems();
   })
@@ -88,23 +88,23 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
     console.log(err);
   });
 
-  const deleteCardPopup = new PopupWithConfirmation('.popup_type_delete-card');
+  const deleteCardPopup = new PopupWithConfirmation('.popup__confirm');
   
 
   deleteCardPopup.setEventListeners(api);
 
   function handleCardConfirmation(element, id) {
-    popupConfirmation.open(element, id);
+    deleteCardPopup.open(element, id);
   }
 
   const popupAddSection = new PopupWithForm(
     '.popup_type_place',
     (data) => {
       popupAddSection.loading(true);
-      api.addCard(data)
+      api.addCard(data.name, data.link)
         .then((res) => {
           createCard.addItem(renderElement(res));
-  
+  console.log('1');
           popupAddSection.close();
         })
         .catch((err) => {
@@ -125,6 +125,7 @@ const editProfile = new PopupWithForm('.profile-popup', (data) => {
   api.editUserInfo(data.name, data.info)
     .then((res) => {
       infoUser.setUserInfo({name: res.name, info: res.about, avatar: res.avatar});
+      
       editProfile.close();
     })
     .catch((err) => {
@@ -143,8 +144,8 @@ const editAvatarPopup = new PopupWithForm(
   (data) => {
     editAvatarPopup.loading(true);
     api.editAvatar(data.link)
+    
       .then((res) => {
-        //avatar.src = data.avatar;
         infoUser.setUserInfo({name: res.name, info: res.about, avatar: res.avatar});
         editAvatarPopup.close();
       })
@@ -154,7 +155,7 @@ const editAvatarPopup = new PopupWithForm(
       .finally(() => {
         editAvatarPopup.loading(false);
       });
-
+      console.log(data.link);
   });
 
 editAvatarPopup.setEventListeners();

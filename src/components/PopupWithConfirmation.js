@@ -8,7 +8,7 @@ export default class PopupWithConfirmation extends Popup {
   }
 
   
-  submitCallback(card) {
+  _deleteElement(card) {
     card.remove();
     card = null;
   }
@@ -19,10 +19,20 @@ export default class PopupWithConfirmation extends Popup {
     this._id = id;
   }
   
-  setEventListeners() {
+  setEventListeners(api) {
     super.setEventListeners();
-    this._form.addEventListener('click', (event) => {
-      event.preventDefault();
+    this._form.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+      
+      api.deleteElement(this._id)
+        .then(() => {
+          this._deleteElement(this._card);
+          this.close();
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        
       
     });
   }

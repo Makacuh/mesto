@@ -4,13 +4,7 @@ export default class Api {
       this._headers = options.headers;
     }
   
-    _parseResponse(res) {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`)
-    }
-  
+   
     
     getInitialCards() {
       return fetch(`${this._url}/cards`, {
@@ -29,11 +23,12 @@ export default class Api {
         })
       })
         .then(this._parseResponse);
+        
     }
   
    
     deleteElement(cardId) {
-      return fetch(`${this._baseUrl}/cards/${cardId}`, {
+      return fetch(`${this._url}/cards/${cardId}`, {
         method: 'DELETE',
         headers: this._headers
       })
@@ -58,20 +53,20 @@ export default class Api {
     }
   
     
-    editUserInfo(name, info) {
+    editUserInfo(name, about) {
       return fetch(`${this._url}/users/me`, {
         method: 'PATCH',
         headers: this._headers,
         body: JSON.stringify({
           name: name,
-          info: info
+          about: about
         })
       })
         .then(this._parseResponse);
     }
   
     
-    editAvatar(url) {
+    editAvatar(url) {console.log(url);
       return fetch(`${this._url}/users/me/avatar`, {
         method: 'PATCH',
         headers: this._headers,
@@ -79,6 +74,15 @@ export default class Api {
           avatar: url
         })
       })
+      
         .then(this._parseResponse);
     }
+
+    _parseResponse(res) {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`)
+    }
+  
   }
