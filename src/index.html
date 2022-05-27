@@ -59,17 +59,16 @@
           <button type="button" class="popup__close"></button>
           <h3 class="popup__title">Обновить аватар</h3>
           <form name="edit-avatar-form"  class="popup__form edit-avatar-form form" id="popup-form-avatar" novalidate>
-            <fieldset class="form__set">
               <input
                 type="url"
                 name="link"
-                id="avatar"
+                id="avatar-url"
                 placeholder="Ссылка на картинку"
                 class="popup__input"
                 required>
-              <span id="avatar-error" class="popup__error-message"></span>
+              <span  class="popup__error-message avatar-url-error"></span>
               <button type="submit" class="popup__button" aria-label="Обновить">Сохранить</button>
-            </fieldset>
+            
           </form>
         </div>
       </div>

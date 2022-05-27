@@ -15,23 +15,30 @@ export  class FormValidator {
   _showInputError(inputElement, errorMessage) {
 
       this._errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
+      
       inputElement.classList.add(this._inputErrorClass);
       this._errorElement.classList.add(this._errorClass);
+     
       this._errorElement.textContent = errorMessage;
+      
   }
 
   _hideInputError(inputElement) {
 
       this._errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
+      
       inputElement.classList.remove(this._inputErrorClass);
-      this._errorElement.classList.remove(this._errorClass);
       this._errorElement.textContent = '';
+     
   }
 
   _checkInputValidity(inputElement) {
+    
       if (!inputElement.validity.valid) {
           this._showInputError(inputElement, inputElement.validationMessage);
+          console.log('invalid')
       } else {
+        console.log('valid')
           this._hideInputError(inputElement);
       }
   }

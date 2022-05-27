@@ -27,14 +27,14 @@ const api = new Api({
 let userId;
 let createCard;
 
-/*const formValidatorElement = new FormValidator(arrayValidation, formCard);
+const formValidatorElement = new FormValidator(arrayValidation, formCard);
 formValidatorElement.enableValidation();
 
 const formValidatorProfile = new FormValidator(arrayValidation, formEdit);
 formValidatorProfile.enableValidation();
 
 const formEditAvatarValidator = new FormValidator(arrayValidation, formAvatar);
-formEditAvatarValidator.enableValidation();*/
+formEditAvatarValidator.enableValidation();
 
 const overviewImage = new PopupWithImage({
 
@@ -155,29 +155,30 @@ const editAvatarPopup = new PopupWithForm(
       .finally(() => {
         editAvatarPopup.loading(false);
       });
-      console.log(data.link);
   });
 
 editAvatarPopup.setEventListeners();
 
 buttonEditAvatar.addEventListener('click', () => {
-  // formEditAvatarValidator.resetErrors();
+  formEditAvatarValidator.resetErrors();
   editAvatarPopup.open();
+  
 });
 
 buttonEdit.addEventListener("click", () => {
   const getUserObj = infoUser.getUserInfo();
   titleInput.value = getUserObj.name;
   subtitleInput.value = getUserObj.info;
-
+  formValidatorProfile.resetErrors();
   editProfile.open();
-  //formValidatorProfile.resetErrors();
+  
 });
 
 
 buttonAdd.addEventListener("click", () => {
-  //formValidatorElement.resetErrors();
+  formValidatorElement.resetErrors();
   popupAddSection.open();
+  
 });
 
 
