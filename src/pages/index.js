@@ -86,7 +86,7 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
     console.log(err);
   });
 
-const deleteCardPopup = new PopupWithConfirmation('.popup__confirm');
+const deleteCardPopup = new PopupWithConfirmation('.popup_confirm');
 
 deleteCardPopup.setEventListeners(api);
 
