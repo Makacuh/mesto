@@ -1,6 +1,5 @@
 import './index.css';
 
-//import { initialCards } from '../utils/initialCards.js';
 import { FormValidator } from '../components/FormValidator.js';
 
 import Card from '../components/Card.js';
@@ -12,7 +11,7 @@ import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from "../components/Api.js";
 
-import { buttonEdit, authorName, authorAbout, titleInput, subtitleInput, buttonAdd, formCard, formEdit, elements, linkAvatar,arrayValidation, formAvatar, buttonEditAvatar, popupEditAvatar } from '../utils/constants.js';
+import { buttonEdit, titleInput, subtitleInput, buttonAdd, formCard, formEdit, elements, linkAvatar, arrayValidation, formAvatar, buttonEditAvatar, } from '../utils/constants.js';
 
 const api = new Api({
   url: 'https://mesto.nomoreparties.co/v1/cohort-41',
@@ -21,8 +20,6 @@ const api = new Api({
     'Content-Type': 'application/json'
   }
 });
-
-
 
 let userId;
 let createCard;
@@ -78,8 +75,9 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
         renderer: renderElement
       },
       '.elements'
+
     );
-    infoUser.setUserInfo({name: intialUser.name, info: intialUser.about, avatar: intialUser.avatar});
+    infoUser.setUserInfo({ name: intialUser.name, info: intialUser.about, avatar: intialUser.avatar });
 
     userId = intialUser._id;
     createCard.renderItems();
@@ -88,44 +86,39 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
     console.log(err);
   });
 
-  const deleteCardPopup = new PopupWithConfirmation('.popup__confirm');
-  
+const deleteCardPopup = new PopupWithConfirmation('.popup__confirm');
 
-  deleteCardPopup.setEventListeners(api);
+deleteCardPopup.setEventListeners(api);
 
-  function handleCardConfirmation(element, id) {
-    deleteCardPopup.open(element, id);
-  }
+function handleCardConfirmation(element, id) {
+  deleteCardPopup.open(element, id);
+}
 
-  const popupAddSection = new PopupWithForm(
-    '.popup_type_place',
-    (data) => {
-      popupAddSection.loading(true);
-      api.addCard(data.name, data.link)
-        .then((res) => {
-          createCard.addItem(renderElement(res));
-  console.log('1');
-          popupAddSection.close();
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-        .finally(() => {
-          popupAddSection.loading(false);
-        });
-    });
-  
-  
-  popupAddSection.setEventListeners();
+const popupAddSection = new PopupWithForm(
+  '.popup_type_place',
+  (data) => {
+    popupAddSection.loading(true);
+    api.addCard(data.name, data.link)
+      .then((res) => {
+        createCard.addItem(renderElement(res));
+        popupAddSection.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        popupAddSection.loading(false);
+      });
+  });
 
-
+popupAddSection.setEventListeners();
 
 const editProfile = new PopupWithForm('.profile-popup', (data) => {
   editProfile.loading(true);
   api.editUserInfo(data.name, data.info)
     .then((res) => {
-      infoUser.setUserInfo({name: res.name, info: res.about, avatar: res.avatar});
-      
+      infoUser.setUserInfo({ name: res.name, info: res.about, avatar: res.avatar });
+
       editProfile.close();
     })
     .catch((err) => {
@@ -144,9 +137,9 @@ const editAvatarPopup = new PopupWithForm(
   (data) => {
     editAvatarPopup.loading(true);
     api.editAvatar(data.link)
-    
+
       .then((res) => {
-        infoUser.setUserInfo({name: res.name, info: res.about, avatar: res.avatar});
+        infoUser.setUserInfo({ name: res.name, info: res.about, avatar: res.avatar });
         editAvatarPopup.close();
       })
       .catch((err) => {
@@ -162,7 +155,7 @@ editAvatarPopup.setEventListeners();
 buttonEditAvatar.addEventListener('click', () => {
   formEditAvatarValidator.resetErrors();
   editAvatarPopup.open();
-  
+
 });
 
 buttonEdit.addEventListener("click", () => {
@@ -171,14 +164,13 @@ buttonEdit.addEventListener("click", () => {
   subtitleInput.value = getUserObj.info;
   formValidatorProfile.resetErrors();
   editProfile.open();
-  
-});
 
+});
 
 buttonAdd.addEventListener("click", () => {
   formValidatorElement.resetErrors();
   popupAddSection.open();
-  
+
 });
 
 

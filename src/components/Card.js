@@ -12,9 +12,9 @@ export default class Card {
 
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
-   
+
     this._handleCardConfirmation = handleCardConfirmation;
-  
+
     if (data.likes) {
       this._likes = data.likes.length;
     } else {
@@ -36,18 +36,18 @@ export default class Card {
 
     this._element = this._getTemplate();
     this._card = this._element.querySelector('.element__image');
-   
+
 
     this._card.src = this._link;
     this._card.alt = this._name;
     this._element.querySelector('.element__title').textContent = this._name;
 
     this._elementLikes = this._element.querySelector('.element__likes-counter');
-    
+
     this._elementLikes.textContent = this._likes;
     this._heartLike = this._element.querySelector('.element__like');
 
-    if (typeof this._like !== "undefined" && this._like.some((user) => {return user._id == this._userId})) {
+    if (typeof this._like !== "undefined" && this._like.some((user) => { return user._id == this._userId })) {
       this._heartLike.classList.add('element__like_active');
     }
 
@@ -57,41 +57,41 @@ export default class Card {
       this._element.querySelector('.element__btn-trash').remove();
     }
 
-   
+
     return this._element;
   }
 
   _likeElement(id) {
-    
+
     if (!this._heartLike.classList.contains('element__like_active')) {
       this._api.toggleLike(id, 'PUT')
-      .then((res) => {return res.likes.length})
-      .then((count) => {
-        this._elementLikes.textContent = count;
-      })
-      .then(() => {
-        this._heartLike.classList.add('element__like_active');
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then((res) => { return res.likes.length })
+        .then((count) => {
+          this._elementLikes.textContent = count;
+        })
+        .then(() => {
+          this._heartLike.classList.add('element__like_active');
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
       this._api.toggleLike(id, 'DELETE')
-      .then((res) => {return res.likes.length})
-      .then((count) => {
-        this._elementLikes.textContent = count;
-      })
-      .then(() => {
-        this._heartLike.classList.remove('element__like_active');
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then((res) => { return res.likes.length })
+        .then((count) => {
+          this._elementLikes.textContent = count;
+        })
+        .then(() => {
+          this._heartLike.classList.remove('element__like_active');
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }
 
 
-  
+
 
   _setListenElements() {
     this._element.querySelector('.element__btn-trash').addEventListener('click', () => {

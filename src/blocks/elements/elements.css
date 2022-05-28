@@ -1,6 +1,7 @@
 .elements {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  max-width: 880px;
+  grid-template-columns: repeat(auto-fit, 282px);
   justify-content: center;
   justify-items: center;
   column-gap: 17px;
@@ -8,15 +9,8 @@
   padding: 0;
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 350px) {
   .elements {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 767px) {
-  .elements {
-    grid-template-columns: 1fr;
-    margin-bottom: 48px;
+    margin: 36px auto 0;
   }
 }
