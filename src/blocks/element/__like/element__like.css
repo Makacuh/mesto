@@ -1,15 +1,12 @@
 .element__like {
   background-image: url(../../../image/white_heart.svg);
-  background-position: 50%;
-  background-repeat: no-repeat;
-  border: none;
+  min-width: 22px;
+  min-height: 19px;
+  align-self: center;
   cursor: pointer;
-  height: 19px;
-  padding: 0;
-  width: 22px;
-  outline: none;
-  background-color: unset;
-  transition: opacity .1s ease-in-out;
+  transition: opacity .5s linear;
+  border: 0;
+  background-color: transparent;
 }
 
 .element__like:hover {
