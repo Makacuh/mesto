@@ -45,8 +45,8 @@ formEditAvatarValidator.enableValidation();
 
 const overviewImage = new PopupWithImage({
   popupSelector: ".popup_window",
-  img: ".popup__image",
-  text: ".popup__figcaption",
+  imageSelector: ".popup__image",
+  captionSelector: ".popup__figcaption",
 });
 
 overviewImage.setEventListeners();
