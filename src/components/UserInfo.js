@@ -6,11 +6,11 @@ export default class UserInfo {
   }
 
   getUserInfo() {
-    const userObj = {
+    return  {
       name: this._titleProfile.textContent,
       info: this._subtitleProfile.textContent,
     };
-    return userObj;
+    
   }
 
   setUserInfo({ name, info, avatar }) {

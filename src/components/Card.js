@@ -11,7 +11,7 @@ export default class Card {
     this._name = data.name;
     this._link = data.link;
     this._id = data._id;
-    this._like = data.likes;
+    this._likes = data.likes;
     this._userIdPhoto = data.owner._id;
     this._userId = userId;
     this._myId = data.myId;
@@ -38,7 +38,7 @@ export default class Card {
 
   _isLiked() {
     if (
-      this._like.some((user) => {
+      this._likes.some((user) => {
         return this._userId === user._id;
       })
     ) {
@@ -48,14 +48,14 @@ export default class Card {
 
   generateCard() {
     this._element = this._getTemplate();
-    this._card = this._element.querySelector(".element__image");
+    this._cardImage = this._element.querySelector(".element__image");
     this._heartLike = this._element.querySelector(".element__like");
-    this._card.src = this._link;
-    this._card.alt = this._name;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
     this._deleteBtn = this._element.querySelector(".element__btn-trash");
     this._element.querySelector(".element__title").textContent = this._name;
     this._elementLikes = this._element.querySelector(".element__likes-counter");
-    this._elementLikes.textContent = this._like.length;
+    this._elementLikes.textContent = this._likes.length;
     this._hasDeleteBtn();
     this._isLiked();
     this._setListenElements();
@@ -64,8 +64,8 @@ export default class Card {
   }
 
   handleLikeCard(data) {
-    this._like = data.likes;
-    this._elementLikes.textContent = this._like.length;
+    this._likes = data.likes;
+    this._elementLikes.textContent = this._likes.length;
     this._heartLike.classList.toggle("element__like_active");
   }
 
@@ -88,8 +88,7 @@ export default class Card {
       }
     });
 
-    this._element
-      .querySelector(".element__image")
+    this._cardImage
       .addEventListener("click", () => {
         this._handleCardClick(this._name, this._link);
       });
