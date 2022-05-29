@@ -37,9 +37,13 @@ export default class Card {
   }
 
   _isLiked() {
-    return this._like.some((user) => {
-      return user._id === this._myId;
-    });
+    if (
+      this._like.some((user) => {
+        return this._userId === user._id;
+      })
+    ) {
+      this._heartLike.classList.add("element__like_active");
+    }
   }
 
   generateCard() {
